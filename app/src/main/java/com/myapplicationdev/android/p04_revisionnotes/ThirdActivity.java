@@ -68,5 +68,13 @@ public class ThirdActivity extends AppCompatActivity {
                 dbh.close();
             }
         });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBHelper dbh = new DBHelper(ThirdActivity.this);
+                dbh.deleteNote(data.getId());
+                dbh.close();
+            }
+        });
     }
 }
