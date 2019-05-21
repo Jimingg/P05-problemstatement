@@ -37,7 +37,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 + COLUMN_star + " INTEGER )";
         db.execSQL(createTableSql);
         Log.i("info" ,"created tables");
-	}
+
+        //Dummy records, to be inserted when the database is created
+        for (int i = 0; i< 4; i++) {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_TITLE, "Data number " + i);
+            values.put(COLUMN_Singer, "Data number " + i);
+            values.put(COLUMN_Year, "Data number " + i);
+            values.put(COLUMN_star, "Data number " + i);
+            db.insert(TABLE_SONG, null, values);
+        }
+        Log.i("info", "dummy records inserted");
+
+    }
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -66,6 +78,8 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<Song> songs = new ArrayList<Song>();
         String selectQuery = "SELECT " + COLUMN_ID + ", "
                 + COLUMN_TITLE + ", "
+                + COLUMN_Singer + ", "
+                + COLUMN_Year + ", "
                 + COLUMN_star
                 + " FROM " + TABLE_SONG;
 
