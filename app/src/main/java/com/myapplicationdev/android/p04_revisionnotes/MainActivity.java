@@ -15,19 +15,22 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    EditText etNote;
+    EditText etSong, etSingers, etYear;
     Button btninsert;
-    TextView btnshowlist;
+    TextView btnshowlist, tvSong, tvSingers, tvYear;
     RadioGroup rgstar;
     ListView lv;
-    ArrayList<Note> al;
+    ArrayList<Song> al;
     RevisionNotesArrayAdapter aa;
     DBHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        etNote = findViewById(R.id.editTextNote);
+
+        etSong = findViewById(R.id.etSong);
+        etSingers = findViewById(R.id.etSingers);
+        etYear = findViewById(R.id.etYear);
         btninsert = findViewById(R.id.buttonInsertNote);
         btnshowlist = findViewById(R.id.buttonShowList);
         rgstar = findViewById(R.id.radioGroupStars);
@@ -38,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 // Create the DBHelper object, passing in the
                 // activity's Context
                 DBHelper db = new DBHelper(MainActivity.this);
-                String note = etNote.getText().toString();
-                if(note.equalsIgnoreCase("")){
+                String song = etSong.getText().toString();
+                String singer = etSingers.getText().toString();
+                String year = etYear.getText().toString();
+                if(song.equalsIgnoreCase("")){
                     Toast.makeText(MainActivity.this, "Enter Something",
                             Toast.LENGTH_LONG).show();
                 }else {
@@ -47,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> data = db.getNoteContent();
                     db.close();
                     for( int i=0; i<data.size();i++){
-                        if(data.get(i).equalsIgnoreCase(note)){
+                        if(data.get(i).equalsIgnoreCase(song)){
                             repeated = true;
                         }else {
                              repeated = false;
@@ -55,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (repeated == true){
-                        Toast.makeText(MainActivity.this, "Repeated note ,try again!",
+                        Toast.makeText(MainActivity.this, "Repeated song ,try again!",
                                 Toast.LENGTH_LONG).show();
                     }else{
                         int starid = rgstar.getCheckedRadioButtonId();
@@ -63,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
                         String star = radioButton.getText().toString();
                         int starselected = Integer.valueOf(star);
                         // Insert a task
-                        db.insertNote(note, starselected);
+                        db.insertNote(song, starselected);
+                        db.insertNote(singer, starselected);
+                        db.insertNote(year, starselected);
                         db.close();
                         Toast.makeText(MainActivity.this, "Successfully inserted",
                                 Toast.LENGTH_LONG).show();
