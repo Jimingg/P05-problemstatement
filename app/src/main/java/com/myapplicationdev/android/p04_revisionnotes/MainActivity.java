@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Song> al;
     SongAdapter aa;
     DBHelper myDB;
+
+
+
+    ////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
