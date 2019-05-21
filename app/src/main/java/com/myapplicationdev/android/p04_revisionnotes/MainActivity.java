@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup rgstar;
     ListView lv;
     ArrayList<Song> al;
-    RevisionNotesArrayAdapter aa;
+    SongAdapter aa;
     DBHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         String star = radioButton.getText().toString();
                         int starselected = Integer.valueOf(star);
                         // Insert a task
-                        db.insertNote(song, starselected);
-                        db.insertNote(singer, starselected);
-                        db.insertNote(year, starselected);
+                        db.insertNote(song, singer, year,starselected);
                         db.close();
                         Toast.makeText(MainActivity.this, "Successfully inserted",
                                 Toast.LENGTH_LONG).show();

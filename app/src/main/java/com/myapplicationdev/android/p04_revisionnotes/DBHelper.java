@@ -14,9 +14,11 @@ public class DBHelper extends SQLiteOpenHelper {
 	//TODO Define the Database properties
 	private static final String DATABASE_NAME = "Note.db";
 	private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NOTE = "note";
+    private static final String TABLE_SONG = "song";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_Note = "note";
+    private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_Singer = "singer";
+    private static final String COLUMN_Year = "year";
     private static final String COLUMN_star = "star";
 
 	public DBHelper(Context context) {
@@ -27,9 +29,11 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		//TODO CREATE TABLE Note
-        String createTableSql = "CREATE TABLE " + TABLE_NOTE +  "("
+        String createTableSql = "CREATE TABLE " + TABLE_SONG +  "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_Note + " TEXT,"
+                + COLUMN_TITLE + " TEXT,"
+                + COLUMN_Singer + " TEXT,"
+                + COLUMN_Year + " TEXT,"
                 + COLUMN_star + " INTEGER )";
         db.execSQL(createTableSql);
         Log.i("info" ,"created tables");
@@ -37,23 +41,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTE);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_SONG);
 		onCreate(db);
 	}
 
-	public void insertNote(String noteContent, int stars) {
+	public void insertNote(String title, String singers, String year, int stars) {
 		//TODO insert the data into the database
 		SQLiteDatabase db = this.getWritableDatabase();
 		// We use ContentValues object to store the values for
 		//  the db operation
 		ContentValues values = new ContentValues();
 		// Store the column name as key and the description as value
-		values.put(COLUMN_Note, noteContent);
-		// Store the column name as key and the date as value
+		values.put(COLUMN_TITLE, title);
+		values.put(COLUMN_Singer, singers);
+		values.put(COLUMN_Year, year);
 		values.put(COLUMN_star, stars);
 		// Insert the row into the TABLE_TASK
-		db.insert(TABLE_NOTE, null, values);
-		// Close the database connection
+		db.insert(TABLE_SONG, null, values);
 		db.close();
 	}
 
@@ -61,9 +65,9 @@ public class DBHelper extends SQLiteOpenHelper {
 		//TODO return records in Java objects
         ArrayList<Song> songs = new ArrayList<Song>();
         String selectQuery = "SELECT " + COLUMN_ID + ", "
-                + COLUMN_Note + ", "
+                + COLUMN_TITLE + ", "
                 + COLUMN_star
-                + " FROM " + TABLE_NOTE;
+                + " FROM " + TABLE_SONG;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -90,7 +94,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		// Create an ArrayList that holds String objects
         ArrayList<String> notes = new ArrayList<String>();
         // Select all the notes' content
-        String selectQuery = " SELECT " + COLUMN_Note + " FROM " + TABLE_NOTE;
+        String selectQuery = " SELECT " + COLUMN_TITLE + " FROM " + TABLE_SONG;
 
         // Get the instance of database to read
         SQLiteDatabase db = this.getReadableDatabase();
