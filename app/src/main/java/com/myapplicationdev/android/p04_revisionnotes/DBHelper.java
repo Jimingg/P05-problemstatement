@@ -77,11 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		//TODO return records in Java objects
         ArrayList<Song> songs = new ArrayList<Song>();
         String selectQuery = "SELECT " + COLUMN_ID + ", "
-                + COLUMN_TITLE + ", "
-                + COLUMN_Singer + ", "
-                + COLUMN_Year + ", "
-                + COLUMN_star
-                + " FROM " + TABLE_SONG;
+                + COLUMN_TITLE + ", " + COLUMN_Singer + ", " + COLUMN_Year + ", " + COLUMN_star + " FROM " + TABLE_SONG;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
