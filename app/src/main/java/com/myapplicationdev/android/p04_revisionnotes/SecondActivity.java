@@ -10,8 +10,8 @@ public class SecondActivity extends AppCompatActivity {
 
 
 	ListView lv;
-	ArrayList<Note> al;
-	RevisionNotesArrayAdapter aa;
+	ArrayList<Song> al;
+	SongAdapter aa;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +19,12 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 		//TODO implement the Custom ListView
         lv = findViewById(R.id.lv);
-        al = new ArrayList<Note>();
+        al = new ArrayList<Song>();
         DBHelper db = new DBHelper(SecondActivity.this);
-        al = db.getAllNotes();
+        al = db.getAllSongs();
 
 
-        aa = new RevisionNotesArrayAdapter(SecondActivity.this, R.layout.row, al);
+        aa = new SongAdapter(SecondActivity.this, R.layout.row, al);
 
         lv.setAdapter(aa);
 
