@@ -10,18 +10,44 @@
 
 
     <TextView
-        android:id="@+id/textViewNote"
+        android:id="@+id/tvSong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/revision_note"
+        android:text="Song Title"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editTextNote"
+        android:id="@+id/etSong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/tvSingers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Singers" />
+
+    <EditText
+        android:id="@+id/etSingers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tvYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year" />
+
+    <EditText
+        android:id="@+id/etYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView2"
