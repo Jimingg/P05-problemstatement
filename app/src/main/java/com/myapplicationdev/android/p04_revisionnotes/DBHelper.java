@@ -16,10 +16,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NOTE = "note";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_TITLE = "title";
-    private static final String COLUMN_SINGERS = "singers";
-    private static final String COLUMN_YEAR = "year";
-    private static final String COLUMN_Stars = "star";
+    private static final String COLUMN_Note = "note";
+    private static final String COLUMN_star = "star";
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,10 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		//TODO CREATE TABLE Note
         String createTableSql = "CREATE TABLE " + TABLE_NOTE +  "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_TITLE + " TEXT,"
-                + COLUMN_SINGERS + " TEXT,"
-                + COLUMN_YEAR + " INTEGER,"
-                + COLUMN_Stars + " INTEGER)";
+                + COLUMN_Note + " TEXT,"
+                + COLUMN_star + " INTEGER )";
         db.execSQL(createTableSql);
         Log.i("info" ,"created tables");
 	}
@@ -118,7 +114,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public int updateNote(Song data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_CONTENT, data.getNoteContent());
+        values.put(COLUm, data.getTitle());
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(data.getId())};
         int result = db.update(TABLE_NOTE, values, condition, args);
