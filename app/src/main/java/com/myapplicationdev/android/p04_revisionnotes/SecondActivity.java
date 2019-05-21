@@ -42,22 +42,21 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        /*lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent i = new Intent(SecondActivity.this,ThirdActivity.class);
-                String data = al.get(position);
-                String idContent = data.split(",")[0].split(":")[1];
-                String title = data.split(",")[1].trim();
-                String singer = data.split(",")[2].trim();
-                String year = data.split(",")[3].trim();
-                String stars = data.split(",")[4].trim();
+                Intent i = new Intent(SecondActivity.this,ThirdActivity.class);
+                int dataID = al.get(position).getId();
+                String dataTitle = al.get(position).getTitle();
+                String dataSinger = al.get(position).getSingers();
+                int dataYear = al.get(position).getYear();
+                int dataStar = al.get(position).getStars();
 
-                Song target = new Song(Integer.parseInt(idContent), title, singer, Integer.parseInt(year), Integer.parseInt(stars));
-                //i.putExtra("data", target);
-                //startActivityForResult(i,9);
+                Song target = new Song(dataID, dataTitle, dataSinger, dataYear, dataStar);
+                i.putExtra("data", target);
+                startActivityForResult(i,9);
 
             }
-        }); */
+        });
     }
 }
