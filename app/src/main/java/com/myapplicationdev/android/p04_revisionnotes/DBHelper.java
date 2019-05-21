@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	}
 
-	@Override
+	@Override 
 	public void onCreate(SQLiteDatabase db) {
 		//TODO CREATE TABLE Note
         String createTableSql = "CREATE TABLE " + TABLE_NOTE +  "("
