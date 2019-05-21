@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     TextView btnshowlist;
     RadioGroup rgstar;
     ListView lv;
-    ArrayList<Note> al;
+    ArrayList<Song> al;
     RevisionNotesArrayAdapter aa;
     DBHelper myDB;
     @Override
