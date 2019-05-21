@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup rgstar;
     ListView lv;
     ArrayList<Note> al;
-    RevisionNotesArrayAdapter aa;
+    SongAdapter aa;
     DBHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         if(data.get(i).equalsIgnoreCase(note)){
                             repeated = true;
                         }else {
-                             repeated = false;
+                            repeated = false;
                         }
                     }
 
